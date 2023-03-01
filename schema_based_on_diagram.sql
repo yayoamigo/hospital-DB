@@ -4,7 +4,6 @@ CREATE TABLE patients (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100),
     date_of_birth DATE,
-    
 );
 
 CREATE TABLE medical_histories (
@@ -13,14 +12,12 @@ CREATE TABLE medical_histories (
     patient_id INT,
     status VARCHAR(100),
     FOREIGN KEY (patient_id) REFERENCES patients (id),
-    
 );
 
 CREATE TABLE treatments (
     id SERIAL PRIMARY KEY,
     type VARCHAR(100),
     name VARCHAR(100),
-    
 );
 
 CREATE TABLE invoices (
@@ -29,8 +26,7 @@ CREATE TABLE invoices (
     generated_at TIMESTAMP,
     payed_at TIMESTAMP,
     medical_history_id INT,
-    FOREIGN KEY (medical_history_id) REFERENCES medical_histories (id),
-    
+    FOREIGN KEY (medical_history_id) REFERENCES medical_histories (id), 
 );
 
 CREATE TABLE invoice_items (
@@ -42,7 +38,6 @@ CREATE TABLE invoice_items (
     treatment_id INT,
     FOREIGN KEY (invoice_id) REFERENCES invoices (id),
     FOREIGN KEY (treatment_id) REFERENCES treatments (id),
-    
 );
 
 --- Join tables from many-to-many relationships might not appear
@@ -53,7 +48,6 @@ CREATE TABLE treatments_history (
     treatment_id INT,
     FOREIGN KEY (medical_history_id) REFERENCES medical_histories (id),
     FOREIGN KEY (treatment_id) REFERENCES treatments (id),
-    PRIMARY KEY (id)
 );
 
 --- Add the FK indexes
